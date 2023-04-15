@@ -139,6 +139,25 @@ class NotionAI(NotionAIBase):
         }
         return self._post(content)
 
+    def write(
+        self, prompt: str, page_title: str = "", rest_content: str = ""
+    ) -> str:
+        """Help me write, ask AI to write for you
+        Args:
+            prompt (str): your prompt, could be anything
+            page_title (str, optional): not sure. Defaults to "".
+            rest_content (str, optional): more context. Defaults to "".
+        Returns:
+            str: Response from NotionAI
+        """
+        content = {
+            "type": PromptTypeEnum.help_me_write.value,
+            "prompt": prompt,
+            "pageTitle": page_title,
+            "restContent": rest_content,
+        }
+        return self._post(content)
+
     def continue_write(
         self, context: str, page_title: str = "", rest_content: str = ""
     ) -> str:
